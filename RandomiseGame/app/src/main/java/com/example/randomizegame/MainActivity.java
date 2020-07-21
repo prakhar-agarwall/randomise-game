@@ -2,6 +2,7 @@ package com.example.randomizegame;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -16,15 +17,24 @@ public class MainActivity extends AppCompatActivity {
 
     int randomNumber,count,flag;
     Button try_it;
+    EditText guess_text;
+    String guess_string;
 
-    public void makeToast(String string){
-        Toast.makeText(this, string, Toast.LENGTH_SHORT).show();
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        try_it = findViewById(R.id.tryit);
+
+        initialize();
     }
 
+    @SuppressLint("SetTextI18n")
     public void guessOnClick(View view){
 
-        EditText guess_text = (EditText) findViewById(R.id.edittext);
-        String guess_string = guess_text.getText().toString();
+        guess_text = findViewById(R.id.edittext);
+        guess_string = guess_text.getText().toString();
 
         if(TextUtils.isEmpty(guess_string)){
             return;
@@ -37,10 +47,11 @@ public class MainActivity extends AppCompatActivity {
                 flag = 0;
                 initialize();
             } else {
-
                 if (count < 10) {
-
-                    if (guess_no > randomNumber) {
+                    if(guess_no < 0 || guess_no > 20) {
+                        makeToast("Not Valid");
+                    }
+                    else if (guess_no > randomNumber) {
                         makeToast("Lower");
                         count++;
                     } else if (guess_no < randomNumber) {
@@ -59,12 +70,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        try_it = findViewById(R.id.tryit);
-        initialize();
+
+    public void makeToast(String string){
+        Toast.makeText(this, string, Toast.LENGTH_SHORT).show();
     }
 
     private void initialize(){
