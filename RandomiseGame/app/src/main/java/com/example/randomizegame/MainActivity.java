@@ -3,7 +3,6 @@ package com.example.randomizegame;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -16,7 +15,7 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity {
 
     int randomNumber,count,flag;
-    Button try_it;
+    Button try_it,start_btn;
     EditText guess_text;
     String guess_string;
 
@@ -26,27 +25,34 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         try_it = findViewById(R.id.tryit);
+        start_btn = findViewById(R.id.start);
+        guess_text = findViewById(R.id.edittext);
+
+
+
+        guess_text.setVisibility(View.INVISIBLE);
+        try_it.setVisibility(View.INVISIBLE);
 
         initialize();
+    }
+
+    public void startOnClick(View view) {
+
+        start_btn.setVisibility(View.INVISIBLE);
+        guess_text.setVisibility(View.VISIBLE);
+        try_it.setVisibility(View.VISIBLE);
+
     }
 
     @SuppressLint("SetTextI18n")
     public void guessOnClick(View view){
 
-        guess_text = findViewById(R.id.edittext);
         guess_string = guess_text.getText().toString();
-
         if(TextUtils.isEmpty(guess_string)){
             return;
         }
         else {
             int guess_no = Integer.parseInt(guess_string);
-
-            if (flag == 1) {
-                try_it.setText("TRY IT!!");
-                flag = 0;
-                initialize();
-            } else {
                 if (count < 10) {
                     if(guess_no < 0 || guess_no > 20) {
                         makeToast("Not Valid");
@@ -68,7 +74,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
-    }
 
 
     public void makeToast(String string){
@@ -82,8 +87,14 @@ public class MainActivity extends AppCompatActivity {
         flag=0;
     }
 
+    @SuppressLint("SetTextI18n")
     private void change(){
-        try_it.setText("NEW GAME");
+        guess_text.setText("");
+        start_btn.setText("START NEW GAME");
+        start_btn.setVisibility(View.VISIBLE);
+        guess_text.setVisibility(View.INVISIBLE);
+        try_it.setVisibility(View.INVISIBLE);
         flag = 1;
+        initialize();
     }
 }

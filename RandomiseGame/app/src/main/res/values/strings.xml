@@ -4,4 +4,5 @@
     <string name="type_your_answer">TYPE YOUR ANSWER</string>
     <string name="guess_the_number_between_0_and_20">Guess the number between 0 and 20</string>
     <string name="_10_chances">[10 chances]</string>
+    <string name="start">START GAME</string>
 </resources>
