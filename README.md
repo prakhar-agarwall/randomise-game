@@ -20,5 +20,14 @@ Download apk file here [Randomise Game](https://github.com/prakhar-agarwall/Sour
  
  ---
  
+### Screen Recording
+<table>
+  <tbody>
+    <td><img src = "https://github.com/prakhar-agarwall/Source/raw/master/Randomise_Game/Randomise_game.gif" width="250" height="500"></td>
+  </tbody>
+ </table>
+ 
+ ---
+ 
  Peace✌
 
