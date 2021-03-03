@@ -29,5 +29,5 @@ Download apk file here [Randomise Game](https://github.com/prakhar-agarwall/Sour
  
  ---
  
- Peace✌
+ Peace Out✌
 
